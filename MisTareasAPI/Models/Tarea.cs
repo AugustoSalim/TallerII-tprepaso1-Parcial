@@ -9,6 +9,8 @@ namespace TareaApi
 
         public Tarea()
         {
+            Titulo = "";
+            Descripcion = "";
             Estado = EstadoTarea.Pendiente;
         }
 

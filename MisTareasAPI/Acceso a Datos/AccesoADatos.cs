@@ -6,7 +6,7 @@ namespace AccesoADatos
     public class AccesoADatos
     {
         private readonly string rutaArchivo = "Data/tareas.json";
-        private static int proximoId = 1;
+
 
         public List<Tarea> ObtenerTareas()
         {
