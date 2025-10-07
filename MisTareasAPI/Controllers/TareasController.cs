@@ -81,6 +81,25 @@ namespace TareaApi.Controllers
 
             return Ok($"Tarea con ID {id} eliminada correctamente.");
         }
+        // ============================================================================================
+        // 🔹 ENDPOINT PUT: Cambiar solo el estado de una tarea
+        // URL: /api/tareas/cambiarEstado?id=1&nuevoEstado=Completada
+        // ============================================================================================
+        [HttpPut("cambiarEstado")]
+        public IActionResult CambiarEstado([FromQuery] int id, [FromQuery] EstadoTarea nuevoEstado)
+        {
+            // Llamamos al método de ManejoTareas que actualiza solo el estado
+            bool resultado = manejoTareas.CambiarEstadoTarea(id, nuevoEstado);
+
+            if (!resultado)
+            {
+                // Si la tarea no existe, devolvemos un 404 Not Found
+                return NotFound($"No se encontró ninguna tarea con ID {id}.");
+            }
+
+            // Si se actualizó correctamente, devolvemos un 200 OK con un mensaje
+            return Ok($"Tarea {id} actualizada correctamente a estado {nuevoEstado}.");
+        }
 
         // ============================================================================================
         // 🔹 ENDPOINT GET (Listar todas las tareas)

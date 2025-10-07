@@ -93,6 +93,24 @@ namespace AccesoADatos
         {
             return accesoDatos.ObtenerTareas();
         }
+        public bool CambiarEstadoTarea(int id, EstadoTarea nuevoEstado)
+        {
+            // Traemos la lista completa de tareas
+            var tareas = accesoDatos.ObtenerTareas();
+
+            // Buscamos la tarea dentro de la lista
+            var tarea = tareas.FirstOrDefault(t => t.Id == id);
+            if (tarea == null)
+                return false;
+
+            // Solo cambiamos el estado
+            tarea.Estado = nuevoEstado;
+
+            // Guardamos los cambios en el JSON
+            accesoDatos.GuardarTareas(tareas); // ✅ Lista completa, no tarea individual
+
+            return true;
+        }
 
         // Listar solo tareas completadas
         public List<Tarea> ListarTareasCompletadas()
